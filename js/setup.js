@@ -129,6 +129,8 @@ function calculateMacroPreference(macroNutrientSplit, targetCalories) {
   }
 }
 
+// This function returns the calorie adjustment based on if the user is
+// 'cutting', 'bulking', or 'maintaining'
 function calculateAdjustmentValue(adjustmentType) {
   if (adjustmentType.toLowerCase() === "cutting") {
     return "-500";
@@ -139,6 +141,8 @@ function calculateAdjustmentValue(adjustmentType) {
   }
 }
 
+/* This is the main function that'll render all of our data as the user inputs
+their height, age, gender, activity level, and goal */
 function renderCalculatedResults() {
   if (
     ageInput.value === "" ||
@@ -190,6 +194,8 @@ function renderCalculatedResults() {
   macroSplitValue.textContent = macroOutput.macroSplit;
 }
 
+// This function will clear the form inputs for height, age, and weight,
+// didn't really bother with defaulting the other inputs
 function resetForm() {
   const inputs = setupForm.querySelectorAll("input");
 
@@ -197,6 +203,8 @@ function resetForm() {
   renderCalculatedResults();
 }
 
+// This will take all of the calculated output data and put it into an object
+// and store it, that way it can be used for our Daily Tracking page
 function saveOutput() {
   console.log("clicked");
   outputResults.forEach((output) => {
