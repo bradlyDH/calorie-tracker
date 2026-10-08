@@ -141,14 +141,14 @@ function calculateAdjustmentValue(adjustmentType) {
 
 function renderCalculatedResults() {
   if (
-    ageInput.value < 0 ||
-    weightInput.value <= 0 ||
-    heightInFeetInput.value <= 0 ||
-    heightInInchesInput.value < 0
+    ageInput.value === "" ||
+    weightInput.value === "" ||
+    heightInFeetInput.value === "" ||
+    heightInInchesInput.value === ""
   ) {
-    formErrorText.style.visibility = "visible";
+    formErrorText.style.display = "block";
   } else {
-    formErrorText.remove();
+    formErrorText.style.display = "none";
   }
 
   const bmrValue = calculateBMR(
@@ -198,15 +198,21 @@ function resetForm() {
 }
 
 function saveOutput() {
-  outputResults.forEach((output) =>
-    output.push(querySelector("strong").textContent),
-  );
+  console.log("clicked");
+  outputResults.forEach((output) => {
+    const resultRowElement = output.querySelector("[id*=value]");
+    const key = resultRowElement.id;
+    const value = resultRowElement.textContent;
 
-  const storedSavedOutput = JSON.stringify(output);
-  localStorage.setItem("output", storedSavedOutput);
+    outputValues[key] = value;
+    console.log(outputValues);
+  });
+
+  const storedSavedOutput = JSON.stringify(outputValues);
+  localStorage.setItem("outputValues", storedSavedOutput);
 }
 
 setupForm.addEventListener("input", renderCalculatedResults);
 resetBtn.addEventListener("click", resetForm);
-// saveOutputBtn.addEventListener("click", saveOutput);
+saveOutputBtn.addEventListener("click", saveOutput);
 renderCalculatedResults();
