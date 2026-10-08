@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Setup & Goals | Calorie Tracker</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+  <body data-page="setup">
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-mark">CT</div>
+          <div>
+            <strong>Calorie Tracker</strong>
+          </div>
+        </div>
+        <div class="nav-label">Tracker</div>
+        <nav class="nav-list">
+          <a class="nav-link" href="/index.html">Daily Tracking</a
+          ><a class="nav-link" href="/pages/foods.html">Foods</a
+          ><a class="nav-link" href="/pages/weight.html">Weight</a
+          ><a class="nav-link" href="/pages/history.html">History</a>
+        </nav>
+        <div class="nav-label">Settings</div>
+        <nav class="nav-list">
+          <a class="nav-link active" href="/pages/setup.html">Setup & Goals</a
+          ><a class="nav-link" href="/pages/instructions.html">Instructions</a>
+        </nav>
+        <div class="sidebar-note">
+          Practice target: read form values, calculate BMR/TDEE, then update
+          every result field.
+        </div>
+      </aside>
+      <main class="main">
+        <header class="topbar">
+          <div class="topbar-title">Calorie & Macro Calculator</div>
+          <div class="topbar-meta">Based on the Setup sheet</div>
+        </header>
+        <div class="page">
+          <div class="page-heading">
+            <div>
+              <p class="eyebrow">Setup</p>
+              <h1>Calories & macro goals</h1>
+              <p>
+                The workbook’s calculator is rebuilt as two web cards: editable
+                inputs and calculated outputs.
+              </p>
+            </div>
+          </div>
+
+          <section class="grid grid-2">
+            <div class="card">
+              <div class="card-header">
+                <h2>Your information</h2>
+                <span class="section-note">Inputs</span>
+              </div>
+              <div class="card-body">
+                <form id="setup-form" class="form-grid">
+                  <div id="validation-message" class="error-message">
+                    Please enter a valid age, weight, and height.
+                  </div>
+                  <div class="field">
+                    <label for="height-feet">Height (feet)</label
+                    ><input
+                      id="height-feet"
+                      class="input-warm"
+                      type="number"
+                      min="3"
+                      max="8"
+                      value="5"
+                    />
+                  </div>
+                  <div class="field">
+                    <label for="height-inches">Height (inches)</label
+                    ><input
+                      id="height-inches"
+                      class="input-warm"
+                      type="number"
+                      min="0"
+                      max="11"
+                      value="9"
+                    />
+                  </div>
+                  <div class="field">
+                    <label for="body-weight">Weight (lb)</label
+                    ><input
+                      id="body-weight"
+                      class="input-warm"
+                      type="number"
+                      step="0.1"
+                      value="169"
+                    />
+                  </div>
+                  <div class="field">
+                    <label for="age">Age</label
+                    ><input
+                      id="age"
+                      class="input-warm"
+                      type="number"
+                      value="37"
+                    />
+                  </div>
+                  <div class="field">
+                    <label for="gender">Gender</label
+                    ><select id="gender" class="input-warm">
+                      <option selected>Male</option>
+                      <option>Female</option>
+                    </select>
+                  </div>
+                  <div class="field">
+                    <label for="workout-days">Workout days / week</label
+                    ><select id="workout-days" class="input-warm">
+                      <option selected>0</option>
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                      <option>6</option>
+                      <option>7</option>
+                    </select>
+                  </div>
+                  <div class="field">
+                    <label for="goal">Goal</label
+                    ><select id="goal" class="input-warm">
+                      <option selected>Cutting</option>
+                      <option>Maintaining</option>
+                      <option>Bulking</option>
+                    </select>
+                  </div>
+                  <div class="field">
+                    <label for="macro-preference">Macro preference</label
+                    ><select id="macro-preference" class="input-warm">
+                      <option>Moderate Carb (30/35/35)</option>
+                      <option selected>Lower Carb (40/40/20)</option>
+                      <option>Higher Carb (30/20/50)</option>
+                    </select>
+                  </div>
+                  <div class="form-span-full button-row">
+                    <button
+                      id="reset-setup"
+                      class="btn btn-outline"
+                      type="button"
+                    >
+                      Reset
+                    </button>
+                    <button id="" class="btn btn-primary" type="button">
+                      Save Output Results
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <h2>Calculated results</h2>
+                <span class="section-note">Outputs</span>
+              </div>
+              <div class="card-body">
+                <div class="results-list" id="calculated-results">
+                  <div class="result-row">
+                    <span>BMR</span><strong id="bmr-value">1682</strong
+                    ><span>Resting calorie estimate</span>
+                  </div>
+                  <div class="result-row">
+                    <span>Activity multiplier</span
+                    ><strong id="activity-multiplier-value">0</strong
+                    ><span>Based on workout days</span>
+                  </div>
+                  <div class="result-row highlight">
+                    <span>Maintenance calories</span
+                    ><strong id="maintenance-calories-value">2607</strong
+                    ><span>BMR × activity</span>
+                  </div>
+                  <div class="result-row highlight">
+                    <span>Target calories</span
+                    ><strong id="target-calories-value">2107</strong
+                    ><span>Maintenance ± goal adjustment</span>
+                  </div>
+                  <div class="result-row">
+                    <span>Protein goal</span
+                    ><strong><span id="protein-goal-value">211</span> g</strong
+                    ><span>4 calories per gram</span>
+                  </div>
+                  <div class="result-row">
+                    <span>Fat goal</span
+                    ><strong><span id="fat-goal-value">94</span> g</strong
+                    ><span>9 calories per gram</span>
+                  </div>
+                  <div class="result-row">
+                    <span>Carb goal</span
+                    ><strong><span id="carb-goal-value">105</span> g</strong
+                    ><span>4 calories per gram</span>
+                  </div>
+                  <div class="result-row">
+                    <span>Protein / Fat / Carb</span
+                    ><strong id="macro-split-value">40% / 40% / 20%</strong
+                    ><span>Percent of target calories</span>
+                  </div>
+                  <div class="result-row">
+                    <span>Adjustment vs. maintenance</span
+                    ><strong id="adjustment-value">-500 calories</strong
+                    ><span>Cut / maintain / bulk</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <div class="callout warning" style="margin-top: 20px">
+            <strong>Accuracy note:</strong> Maintenance is an estimate. Compare
+            it with 2–3 weeks of average calorie intake and body-weight trend,
+            then adjust if needed.
+          </div>
+
+          <section class="grid grid-3" style="margin-top: 20px">
+            <div class="card metric-card">
+              <div class="metric-label">Moderate Carb</div>
+              <div class="metric-value">30 / 35 / 35</div>
+              <div class="metric-sub">Protein / fat / carbs</div>
+            </div>
+            <div class="card metric-card">
+              <div class="metric-label">Lower Carb</div>
+              <div class="metric-value">40 / 40 / 20</div>
+              <div class="metric-sub">Protein / fat / carbs</div>
+            </div>
+            <div class="card metric-card">
+              <div class="metric-label">Higher Carb</div>
+              <div class="metric-value">30 / 20 / 50</div>
+              <div class="metric-sub">Protein / fat / carbs</div>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+    <script src="/js/setup.js" defer></script>
+  </body>
+</html>

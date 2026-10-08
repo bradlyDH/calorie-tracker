@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Foods | Calorie Tracker</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+  <body data-page="foods">
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-mark">CT</div>
+          <div>
+            <strong>Calorie Tracker</strong
+            ><span>JavaScript practice project</span>
+          </div>
+        </div>
+        <div class="nav-label">Tracker</div>
+        <nav class="nav-list">
+          <a class="nav-link" href="/index.html">Daily Tracking</a
+          ><a class="nav-link active" href="/pages/foods.html">Foods</a
+          ><a class="nav-link" href="/pages/weight.html">Weight</a
+          ><a class="nav-link" href="/pages/history.html">History</a>
+        </nav>
+        <div class="nav-label">Settings</div>
+        <nav class="nav-list">
+          <a class="nav-link" href="/pages/setup.html">Setup & Goals</a
+          ><a class="nav-link" href="/pages/instructions.html">Instructions</a>
+        </nav>
+      </aside>
+      <main class="main">
+        <header class="topbar">
+          <div class="topbar-title">Foods Database</div>
+          <div class="topbar-meta">Serving nutrition reference</div>
+        </header>
+        <div class="page">
+          <div class="page-heading">
+            <div>
+              <p class="eyebrow">Food database</p>
+              <h1>Save foods once, reuse them everywhere</h1>
+              <p>
+                Enter nutrition per serving. Serving size in grams lets the
+                tracking page scale nutrition to the exact amount eaten.
+              </p>
+            </div>
+          </div>
+
+          <section class="card">
+            <div class="card-header">
+              <h2>Add a food</h2>
+              <span class="section-note"
+                >Form hooks are ready for JavaScript</span
+              >
+            </div>
+            <div class="card-body">
+              <form id="food-database-form" class="form-grid cols-4">
+                <div class="field form-span-2">
+                  <label for="food-name">Food name</label
+                  ><input
+                    id="food-name"
+                    type="text"
+                    placeholder="e.g. Cooked Chicken Breast"
+                    required
+                  />
+                </div>
+                <div class="field">
+                  <label for="food-brand">Food brand</label
+                  ><input
+                    id="food-brand"
+                    type="text"
+                    placeholder="e.g. Giant Eagle"
+                  />
+                </div>
+                <div class="field">
+                  <label for="serving-size">Serving size (g)</label
+                  ><input
+                    id="serving-size"
+                    type="number"
+                    min="0"
+                    step="0.1"
+                    placeholder="100"
+                    required
+                  />
+                </div>
+                <div class="field">
+                  <label for="food-calories">Calories</label
+                  ><input
+                    id="food-calories"
+                    type="number"
+                    min="0"
+                    step="0.1"
+                    placeholder="165"
+                    required
+                  />
+                </div>
+                <div class="field">
+                  <label for="food-fat">Fat (g)</label
+                  ><input
+                    id="food-fat"
+                    type="number"
+                    min="0"
+                    step="0.1"
+                    placeholder="3.6"
+                    required
+                  />
+                </div>
+                <div class="field">
+                  <label for="food-carbs">Carbs (g)</label
+                  ><input
+                    id="food-carbs"
+                    type="number"
+                    min="0"
+                    step="0.1"
+                    placeholder="0"
+                    required
+                  />
+                </div>
+                <div class="field">
+                  <label for="food-protein">Protein (g)</label
+                  ><input
+                    id="food-protein"
+                    type="number"
+                    min="0"
+                    step="0.1"
+                    placeholder="31"
+                    required
+                  />
+                </div>
+                <div class="field">
+                  <label for="food-notes">Notes</label
+                  ><input id="food-notes" type="text" placeholder="Optional" />
+                </div>
+                <div class="form-span-full button-row">
+                  <button id="save-food" type="button" class="btn btn-primary">
+                    Save food</button
+                  ><button
+                    id="clear-food-form"
+                    type="button"
+                    class="btn btn-outline"
+                  >
+                    Clear form
+                  </button>
+                </div>
+              </form>
+            </div>
+          </section>
+
+          <section class="grid grid-sidebar" style="margin-top: 20px">
+            <div class="card">
+              <div class="card-header">
+                <h2>Your foods</h2>
+                <div style="min-width: 220px">
+                  <input
+                    id="food-search"
+                    type="search"
+                    placeholder="Search foods…"
+                    aria-label="Search foods"
+                  />
+                </div>
+              </div>
+              <div class="table-wrap">
+                <table class="data-table" id="foods-table">
+                  <thead>
+                    <tr id="headers-row">
+                      <th id="name">Food Name</th>
+                      <th id="brand">Food Brand</th>
+                      <th class="number" id="servingSize">Serving (g)</th>
+                      <th class="number" id="calories">Calories</th>
+                      <th class="number" id="fat">Fat</th>
+                      <th class="number" id="carbs">Carbs</th>
+                      <th class="number" id="protein">Protein</th>
+                      <th>Notes</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="foods-table-body"></tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="grid" style="align-content: start">
+              <div class="card" style="width: 300px">
+                <div class="card-header"><h2>Ounces to grams</h2></div>
+                <div class="card-body">
+                  <div class="field">
+                    <label for="ounces">Ounces</label
+                    ><input id="ounces" type="number" step="0.1" value="" />
+                  </div>
+                  <div class="field" style="margin-top: 12px">
+                    <label for="grams-result">Grams</label
+                    ><input
+                      id="grams-result"
+                      class="input-cool"
+                      type="number"
+                      value=""
+                      readonly
+                    />
+                  </div>
+                </div>
+              </div>
+              <!-- <div class="callout">
+                <strong>JavaScript challenge:</strong> 1 ounce = 28.3495 grams.
+                Update the grams field as the user types.
+              </div> -->
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+    <script src="/js/foods.js" defer></script>
+  </body>
+</html>

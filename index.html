@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Daily Tracker | Calorie Tracker</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+  <body data-page="tracking">
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-mark">CT</div>
+          <div>
+            <strong>Calorie Tracker</strong
+            ><span>JavaScript practice project</span>
+          </div>
+        </div>
+        <div class="nav-label">Tracker</div>
+        <nav class="nav-list" aria-label="Primary navigation">
+          <a class="nav-link active" href="index.html">Daily Tracking</a>
+          <a class="nav-link" href="/pages/foods.html">Foods</a>
+          <a class="nav-link" href="/pages/weight.html">Weight</a>
+          <a class="nav-link" href="/pages/history.html">History</a>
+        </nav>
+        <div class="nav-label">Settings</div>
+        <nav class="nav-list">
+          <a class="nav-link" href="/pages/setup.html">Setup & Goals</a>
+          <a class="nav-link" href="/pages/instructions.html">Instructions</a>
+        </nav>
+        <div class="sidebar-note">
+          This starter intentionally contains no JavaScript. The IDs and data
+          attributes are there for you to wire up.
+        </div>
+      </aside>
+
+      <main class="main">
+        <header class="topbar">
+          <div class="topbar-title">Daily Calorie & Macro Tracking</div>
+          <div class="topbar-meta">Static starter · HTML + CSS only</div>
+        </header>
+        <div class="page">
+          <div class="page-heading">
+            <div>
+              <p class="eyebrow">Daily dashboard</p>
+              <h1>Track your day</h1>
+              <p>
+                Choose a date, set your goal source, log food, and eventually
+                let your JavaScript calculate the rest.
+              </p>
+            </div>
+            <span class="status-pill"
+              ><span class="status-dot"></span>No JavaScript yet</span
+            >
+          </div>
+
+          <section class="grid grid-sidebar">
+            <div class="card">
+              <div class="card-header">
+                <h2>Daily settings</h2>
+                <span class="section-note">Spreadsheet: Tracking</span>
+              </div>
+              <div class="card-body">
+                <div class="form-grid">
+                  <div class="field">
+                    <label for="selected-date">Selected date</label
+                    ><input
+                      id="selected-date"
+                      class="input-warm"
+                      type="date"
+                      value="2026-09-06"
+                    />
+                  </div>
+                  <div class="field">
+                    <label for="goal-source">Goal source</label
+                    ><select id="goal-source" class="input-warm">
+                      <option>Manual</option>
+                      <option>Calculator</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header"><h2>Manual goal overrides</h2></div>
+              <div class="card-body">
+                <div class="form-grid cols-4">
+                  <div class="field">
+                    <label for="manual-calories">Calories</label
+                    ><input
+                      id="manual-calories"
+                      class="input-warm"
+                      type="number"
+                      value="2000"
+                    />
+                  </div>
+                  <div class="field">
+                    <label for="manual-fat">Fat (g)</label
+                    ><input
+                      id="manual-fat"
+                      class="input-warm"
+                      type="number"
+                      step="0.1"
+                      value="88.9"
+                    />
+                  </div>
+                  <div class="field">
+                    <label for="manual-carbs">Carbs (g)</label
+                    ><input
+                      id="manual-carbs"
+                      class="input-warm"
+                      type="number"
+                      step="0.1"
+                      value="100"
+                    />
+                  </div>
+                  <div class="field">
+                    <label for="manual-protein">Protein (g)</label
+                    ><input
+                      id="manual-protein"
+                      class="input-warm"
+                      type="number"
+                      step="0.1"
+                      value="200"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="card" style="margin-top: 20px">
+            <div class="card-header">
+              <h2>Daily summary</h2>
+              <span class="section-note"
+                >Calculated values are static placeholders</span
+              >
+            </div>
+            <div class="table-wrap">
+              <table class="summary-table" id="daily-summary-table">
+                <thead>
+                  <tr>
+                    <th>Summary</th>
+                    <th>Calories</th>
+                    <th>Fat (g)</th>
+                    <th>Carbs (g)</th>
+                    <th>Protein (g)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr data-summary-row="goal">
+                    <th>Goal</th>
+                    <td id="goal-calories">2000</td>
+                    <td id="goal-fat">88.9</td>
+                    <td id="goal-carbs">100</td>
+                    <td id="goal-protein">200</td>
+                  </tr>
+                  <tr data-summary-row="consumed">
+                    <th>Consumed</th>
+                    <td id="consumed-calories">1318</td>
+                    <td id="consumed-fat">33.3</td>
+                    <td id="consumed-carbs">88.7</td>
+                    <td id="consumed-protein">175.5</td>
+                  </tr>
+                  <tr class="remaining" data-summary-row="remaining">
+                    <th>Remaining</th>
+                    <td id="remaining-calories">682</td>
+                    <td id="remaining-fat">55.6</td>
+                    <td id="remaining-carbs">11.3</td>
+                    <td id="remaining-protein">24.5</td>
+                  </tr>
+                  <tr data-summary-row="percent">
+                    <th>% of Goal Used</th>
+                    <td>65.9%</td>
+                    <td>37.5%</td>
+                    <td>88.7%</td>
+                    <td>87.8%</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="card-body compact">
+              <div class="progress-stack">
+                <div class="progress-item">
+                  <div class="progress-meta">
+                    <span>Calories</span
+                    ><strong id="calorie-progress-label">1318 / 2000</strong>
+                  </div>
+                  <div class="progress-track">
+                    <div
+                      id="calorie-progress"
+                      class="progress-fill"
+                      style="--progress: 65.9%"
+                    ></div>
+                  </div>
+                </div>
+                <div class="progress-item">
+                  <div class="progress-meta">
+                    <span>Protein</span
+                    ><strong id="protein-progress-label">175.5 / 200 g</strong>
+                  </div>
+                  <div class="progress-track">
+                    <div
+                      id="protein-progress"
+                      class="progress-fill"
+                      style="--progress: 87.8%"
+                    ></div>
+                  </div>
+                </div>
+                <div class="progress-item">
+                  <div class="progress-meta">
+                    <span>Carbs</span
+                    ><strong id="carb-progress-label">88.7 / 100 g</strong>
+                  </div>
+                  <div class="progress-track">
+                    <div
+                      id="carb-progress"
+                      class="progress-fill"
+                      style="--progress: 88.7%"
+                    ></div>
+                  </div>
+                </div>
+                <div class="progress-item">
+                  <div class="progress-meta">
+                    <span>Fat</span
+                    ><strong id="fat-progress-label">33.3 / 88.9 g</strong>
+                  </div>
+                  <div class="progress-track">
+                    <div
+                      id="fat-progress"
+                      class="progress-fill"
+                      style="--progress: 37.5%"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="card" style="margin-top: 20px">
+            <div class="card-header">
+              <div>
+                <h2>Food log</h2>
+                <!-- <div class="section-note">
+                  Pick a food and enter grams eaten. Your JS can scale nutrition
+                  from the Foods database.
+                </div> -->
+              </div>
+              <button id="clear-food-log" type="button" class="btn btn-danger">
+                Clear food log
+              </button>
+            </div>
+            <div class="card-body">
+              <form id="food-log-form" class="form-grid cols-4">
+                <div class="field">
+                  <label for="food-search">Food Search</label>
+                  <input
+                    type="text"
+                    id="food-search"
+                    placeholder="Search foods..."
+                    autocomplete="off"
+                  />
+                  <div id="food-suggestions"></div>
+                </div>
+                <div class="field">
+                  <label for="amount-eaten">Amount eaten (g)</label
+                  ><input
+                    id="amount-eaten"
+                    type="number"
+                    min="0"
+                    step="0.1"
+                    placeholder="e.g. 125"
+                  />
+                </div>
+
+                <div class="form-span-full button-row">
+                  <button
+                    id="add-food-entry"
+                    class="btn btn-primary"
+                    type="button"
+                  >
+                    Add food
+                  </button>
+                </div>
+              </form>
+            </div>
+            <div class="table-wrap">
+              <table class="data-table" id="food-log-table">
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Food</th>
+                    <!-- <th>Brand</th> -->
+                    <th class="number">Amount (g)</th>
+                    <th class="number">Calories</th>
+                    <th class="number">Fat</th>
+                    <th class="number">Carbs</th>
+                    <th class="number">Protein</th>
+                    <th>Time</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="food-log-body">
+                  <tr>
+                    <td>09/06/2026</td>
+                    <td>Vanilla Protein Shake</td>
+                    <!-- <td>Fairlife</td> -->
+                    <td class="number">1</td>
+                    <td class="number">150</td>
+                    <td class="number">2.5</td>
+                    <td class="number">3.0</td>
+                    <td class="number">30.0</td>
+                    <td>10:13 AM</td>
+                    <td>
+                      <button
+                        class="icon-btn"
+                        type="button"
+                        data-action="delete-row"
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+          <div class="footer-note">
+            Build idea: start by listening for the “Add food” button, then
+            append a new table row.
+          </div>
+        </div>
+      </main>
+    </div>
+    <script src="js/app.js" defer></script>
+  </body>
+</html>

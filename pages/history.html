@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>History | Calorie Tracker</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+  <body data-page="history">
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-mark">CT</div>
+          <div>
+            <strong>Calorie Tracker</strong
+            ><span>JavaScript practice project</span>
+          </div>
+        </div>
+        <div class="nav-label">Tracker</div>
+        <nav class="nav-list">
+          <a class="nav-link" href="/index.html">Daily Tracking</a
+          ><a class="nav-link" href="/pages/foods.html">Foods</a
+          ><a class="nav-link" href="/pages/weight.html">Weight</a
+          ><a class="nav-link active" href="/pages/history.html">History</a>
+        </nav>
+        <div class="nav-label">Settings</div>
+        <nav class="nav-list">
+          <a class="nav-link" href="/pages/setup.html">Setup & Goals</a
+          ><a class="nav-link" href="/pages/instructions.html">Instructions</a>
+        </nav>
+        <div class="sidebar-note">
+          Practice target: group food log entries by date, calculate daily
+          totals, then render these cards.
+        </div>
+      </aside>
+      <main class="main">
+        <header class="topbar">
+          <div class="topbar-title">Tracking History</div>
+          <div class="topbar-meta">Daily summary archive</div>
+        </header>
+        <div class="page">
+          <div class="page-heading">
+            <div>
+              <p class="eyebrow">History</p>
+              <h1>Daily tracking history</h1>
+              <p>
+                Review goal, consumed, remaining, and percentage used for each
+                day.
+              </p>
+            </div>
+          </div>
+
+          <section class="card">
+            <div class="card-body">
+              <div class="form-grid cols-3">
+                <div class="field">
+                  <label for="history-start">Start date</label
+                  ><input id="history-start" type="date" value="2026-09-01" />
+                </div>
+                <div class="field">
+                  <label for="history-end">End date</label
+                  ><input id="history-end" type="date" value="2026-09-06" />
+                </div>
+                <div class="field" style="align-self: end">
+                  <button
+                    id="filter-history"
+                    type="button"
+                    class="btn btn-primary"
+                  >
+                    Filter history
+                  </button>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="card" style="margin-top: 20px" id="history-list">
+            <div class="history-day" data-history-date="2026-09-01">
+              <div class="history-day-head">
+                <div class="history-date">Tuesday, September 1</div>
+                <span class="status-pill">80.2% calories</span>
+              </div>
+              <div class="history-grid">
+                <div class="history-stat">
+                  <span>Calories</span><strong>1604 / 2000</strong>
+                </div>
+                <div class="history-stat">
+                  <span>Fat</span><strong>36.2 / 88.9 g</strong>
+                </div>
+                <div class="history-stat">
+                  <span>Carbs</span><strong>112.1 / 100 g</strong>
+                </div>
+                <div class="history-stat">
+                  <span>Protein</span><strong>211.2 / 200 g</strong>
+                </div>
+              </div>
+            </div>
+            <div class="history-day" data-history-date="2026-09-02">
+              <div class="history-day-head">
+                <div class="history-date">Wednesday, September 2</div>
+                <span class="status-pill">83.5% calories</span>
+              </div>
+              <div class="history-grid">
+                <div class="history-stat">
+                  <span>Calories</span><strong>1670 / 2000</strong>
+                </div>
+                <div class="history-stat">
+                  <span>Fat</span><strong>62.9 / 88.9 g</strong>
+                </div>
+                <div class="history-stat">
+                  <span>Carbs</span><strong>86.2 / 100 g</strong>
+                </div>
+                <div class="history-stat">
+                  <span>Protein</span><strong>189.2 / 200 g</strong>
+                </div>
+              </div>
+            </div>
+            <div class="history-day" data-history-date="2026-09-03">
+              <div class="history-day-head">
+                <div class="history-date">Thursday, September 3</div>
+                <span class="status-pill">96.1% calories</span>
+              </div>
+              <div class="history-grid">
+                <div class="history-stat">
+                  <span>Calories</span><strong>1922 / 2000</strong>
+                </div>
+                <div class="history-stat">
+                  <span>Fat</span><strong>58.6 / 88.9 g</strong>
+                </div>
+                <div class="history-stat">
+                  <span>Carbs</span><strong>97.2 / 100 g</strong>
+                </div>
+                <div class="history-stat">
+                  <span>Protein</span><strong>243.2 / 200 g</strong>
+                </div>
+              </div>
+            </div>
+            <div class="history-day" data-history-date="2026-09-06">
+              <div class="history-day-head">
+                <div class="history-date">Sunday, September 6</div>
+                <span class="status-pill">97.6% calories</span>
+              </div>
+              <div class="history-grid">
+                <div class="history-stat">
+                  <span>Calories</span><strong>1952 / 2000</strong>
+                </div>
+                <div class="history-stat">
+                  <span>Fat</span><strong>43.6 / 88.9 g</strong>
+                </div>
+                <div class="history-stat">
+                  <span>Carbs</span><strong>115.2 / 100 g</strong>
+                </div>
+                <div class="history-stat">
+                  <span>Protein</span><strong>262.2 / 200 g</strong>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <div class="callout" style="margin-top: 20px">
+            <strong>JavaScript idea:</strong> Don’t store these history cards
+            separately. Store food entries, then derive daily history by
+            grouping entries with the same date.
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

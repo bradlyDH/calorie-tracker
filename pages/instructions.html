@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Instructions | Calorie Tracker</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+  <body data-page="instructions">
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-mark">CT</div>
+          <div>
+            <strong>Calorie Tracker</strong
+            ><span>JavaScript practice project</span>
+          </div>
+        </div>
+        <div class="nav-label">Tracker</div>
+        <nav class="nav-list">
+          <a class="nav-link" href="/index.html">Daily Tracking</a
+          ><a class="nav-link" href="/pages/foods.html">Foods</a
+          ><a class="nav-link" href="/pages/weight.html">Weight</a
+          ><a class="nav-link" href="/pages/history.html">History</a>
+        </nav>
+        <div class="nav-label">Settings</div>
+        <nav class="nav-list">
+          <a class="nav-link" href="/pages/setup.html">Setup & Goals</a
+          ><a class="nav-link active" href="/pages/instructions.html"
+            >Instructions</a
+          >
+        </nav>
+        <div class="sidebar-note">
+          Use this page as your build checklist. Try each feature yourself
+          before looking up a finished solution.
+        </div>
+      </aside>
+      <main class="main">
+        <header class="topbar">
+          <div class="topbar-title">How to Use the Tracker</div>
+          <div class="topbar-meta">Workbook instructions + coding roadmap</div>
+        </header>
+        <div class="page">
+          <div class="page-heading">
+            <div>
+              <p class="eyebrow">Instructions</p>
+              <h1>How the app should work</h1>
+              <p>
+                This preserves the workbook workflow while giving you a clear
+                order for implementing the JavaScript.
+              </p>
+            </div>
+          </div>
+
+          <section class="grid grid-2">
+            <div class="card">
+              <div class="card-header"><h2>User workflow</h2></div>
+              <div class="card-body">
+                <div class="instructions-grid">
+                  <div class="instruction-step">
+                    <div class="step-number">1</div>
+                    <div>
+                      <h3>Setup</h3>
+                      <p>
+                        Enter height, weight, age, gender, workout days, goal,
+                        and macro preference. Calculate BMR, maintenance, target
+                        calories, and macro grams.
+                      </p>
+                    </div>
+                  </div>
+                  <div class="instruction-step">
+                    <div class="step-number">2</div>
+                    <div>
+                      <h3>Add foods</h3>
+                      <p>
+                        Enter each food once with serving size in grams,
+                        calories, fat, carbs, and protein.
+                      </p>
+                    </div>
+                  </div>
+                  <div class="instruction-step">
+                    <div class="step-number">3</div>
+                    <div>
+                      <h3>Pick a date</h3>
+                      <p>
+                        The daily summary should only total food-log entries
+                        that match the selected date.
+                      </p>
+                    </div>
+                  </div>
+                  <div class="instruction-step">
+                    <div class="step-number">4</div>
+                    <div>
+                      <h3>Choose goals</h3>
+                      <p>
+                        Either pull goals from Setup or use manual daily calorie
+                        and macro goals.
+                      </p>
+                    </div>
+                  </div>
+                  <div class="instruction-step">
+                    <div class="step-number">5</div>
+                    <div>
+                      <h3>Log food</h3>
+                      <p>
+                        Select a food and enter grams eaten. Scale the saved
+                        serving nutrition to the amount eaten.
+                      </p>
+                    </div>
+                  </div>
+                  <div class="instruction-step">
+                    <div class="step-number">6</div>
+                    <div>
+                      <h3>Check remaining</h3>
+                      <p>
+                        Show consumed, remaining, and percentage of each goal
+                        used.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="grid" style="align-content: start">
+              <div class="card">
+                <div class="card-header"><h2>Activity multipliers</h2></div>
+                <div class="table-wrap">
+                  <table class="data-table" style="min-width: 0">
+                    <thead>
+                      <tr>
+                        <th>Workout days</th>
+                        <th>Multiplier</th>
+                        <th>Assumption</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>0</td>
+                        <td>1.2</td>
+                        <td>Sedentary</td>
+                      </tr>
+                      <tr>
+                        <td>1–2</td>
+                        <td>1.375</td>
+                        <td>Light exercise</td>
+                      </tr>
+                      <tr>
+                        <td>3–4</td>
+                        <td>1.55</td>
+                        <td>Moderate exercise</td>
+                      </tr>
+                      <tr>
+                        <td>5–6</td>
+                        <td>1.725</td>
+                        <td>Very active</td>
+                      </tr>
+                      <tr>
+                        <td>7</td>
+                        <td>1.9</td>
+                        <td>Very high activity</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-header"><h2>Macro split reference</h2></div>
+                <div class="card-body">
+                  <div class="results-list">
+                    <div class="result-row">
+                      <span>Moderate Carb</span><strong>30 / 35 / 35</strong
+                      ><span>Protein / fat / carbs</span>
+                    </div>
+                    <div class="result-row">
+                      <span>Lower Carb</span><strong>40 / 40 / 20</strong
+                      ><span>Protein / fat / carbs</span>
+                    </div>
+                    <div class="result-row">
+                      <span>Higher Carb</span><strong>30 / 20 / 50</strong
+                      ><span>Protein / fat / carbs</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="card" style="margin-top: 20px">
+            <div class="card-header">
+              <h2>Suggested JavaScript build order</h2>
+              <span class="status-pill">No answers included</span>
+            </div>
+            <div class="card-body">
+              <ol class="todo-list">
+                <li>
+                  <strong>DOM basics:</strong> select the Setup inputs and
+                  output elements, then respond to the
+                  <span class="code-hook">#calculate-goals</span> button.
+                </li>
+                <li>
+                  <strong>Calculator:</strong> implement BMR, activity
+                  multiplier, cut/maintain/bulk adjustment, and macro gram
+                  calculations.
+                </li>
+                <li>
+                  <strong>Objects & arrays:</strong> represent each food as an
+                  object and keep all foods in an array.
+                </li>
+                <li>
+                  <strong>Rendering:</strong> create a function that turns the
+                  foods array into rows inside
+                  <span class="code-hook">#foods-table-body</span>.
+                </li>
+                <li>
+                  <strong>CRUD:</strong> add food creation, editing, deleting,
+                  and search filtering.
+                </li>
+                <li>
+                  <strong>Persistence:</strong> save Setup values and food data
+                  in <span class="code-hook">localStorage</span>.
+                </li>
+                <li>
+                  <strong>Food logging:</strong> calculate nutrition using
+                  <em>amount eaten ÷ serving size × serving nutrition</em>.
+                </li>
+                <li>
+                  <strong>Daily totals:</strong> filter log entries by date and
+                  use <span class="code-hook">reduce()</span> to total
+                  calories/macros.
+                </li>
+                <li>
+                  <strong>UI state:</strong> update remaining values,
+                  percentages, and progress bars automatically.
+                </li>
+                <li>
+                  <strong>Weight:</strong> save weigh-ins and build the points
+                  string for <span class="code-hook">#weight-line</span>.
+                </li>
+                <li>
+                  <strong>History:</strong> group food-log entries by date and
+                  render a daily summary for each date.
+                </li>
+                <li>
+                  <strong>Refactor:</strong> split the code into modules such as
+                  storage, calculations, rendering, and page-specific logic.
+                </li>
+              </ol>
+            </div>
+          </section>
+
+          <div class="callout warning" style="margin-top: 20px">
+            <strong>Maintenance note from the spreadsheet:</strong> workout days
+            alone cannot perfectly determine maintenance. Steps, job activity,
+            workout intensity, and individual metabolism matter. Treat the
+            estimate as a starting point and compare it with 2–3 weeks of weight
+            trend.
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

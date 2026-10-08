@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Weight | Calorie Tracker</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+  <body data-page="weight">
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-mark">CT</div>
+          <div>
+            <strong>Calorie Tracker</strong
+            ><span>JavaScript practice project</span>
+          </div>
+        </div>
+        <div class="nav-label">Tracker</div>
+        <nav class="nav-list">
+          <a class="nav-link" href="/index.html">Daily Tracking</a
+          ><a class="nav-link" href="/pages/foods.html">Foods</a
+          ><a class="nav-link active" href="/pages/weight.html">Weight</a
+          ><a class="nav-link" href="/pages/history.html">History</a>
+        </nav>
+        <div class="nav-label">Settings</div>
+        <nav class="nav-list">
+          <a class="nav-link" href="/pages/setup.html">Setup & Goals</a
+          ><a class="nav-link" href="/pages/instructions.html">Instructions</a>
+        </nav>
+        <div class="sidebar-note">
+          Practice target: store weigh-ins and redraw the SVG line chart from
+          your data.
+        </div>
+      </aside>
+      <main class="main">
+        <header class="topbar">
+          <div class="topbar-title">Weight Progress</div>
+          <div class="topbar-meta">Based on the Weight sheet</div>
+        </header>
+        <div class="page">
+          <div class="page-heading">
+            <div>
+              <p class="eyebrow">Progress</p>
+              <h1>Weight tracking</h1>
+              <p>
+                Log weigh-ins, compare the trend with your calorie target, and
+                use JavaScript to redraw the chart.
+              </p>
+            </div>
+          </div>
+
+          <section class="grid grid-4">
+            <div class="card metric-card">
+              <div class="metric-label">Starting weight</div>
+              <div class="metric-value" id="starting-weight">169.9</div>
+              <div class="metric-sub">lb</div>
+            </div>
+            <div class="card metric-card">
+              <div class="metric-label">Current weight</div>
+              <div class="metric-value" id="current-weight">167.9</div>
+              <div class="metric-sub">lb</div>
+            </div>
+            <div class="card metric-card">
+              <div class="metric-label">Change</div>
+              <div class="metric-value" id="weight-change">-2.0</div>
+              <div class="metric-sub">lb</div>
+            </div>
+            <div class="card metric-card">
+              <div class="metric-label">Current calorie target</div>
+              <div class="metric-value" id="weight-calorie-target">2000</div>
+              <div class="metric-sub">cal/day</div>
+            </div>
+          </section>
+
+          <section class="card" style="margin-top: 20px">
+            <div class="card-header"><h2>Add weigh-in</h2></div>
+            <div class="card-body">
+              <form id="weight-form" class="form-grid cols-4">
+                <div class="field">
+                  <label for="weight-date">Date</label
+                  ><input id="weight-date" type="date" value="2026-09-06" />
+                </div>
+                <div class="field">
+                  <label for="weight-entry">Weight (lb)</label
+                  ><input
+                    id="weight-entry"
+                    type="number"
+                    step="0.1"
+                    placeholder="167.9"
+                  />
+                </div>
+                <div class="field">
+                  <label for="weight-target">Calorie target</label
+                  ><input id="weight-target" type="number" placeholder="2000" />
+                </div>
+                <div class="field" style="align-self: end">
+                  <button
+                    id="add-weigh-in"
+                    type="button"
+                    class="btn btn-primary"
+                  >
+                    Add weigh-in
+                  </button>
+                </div>
+              </form>
+            </div>
+          </section>
+
+          <section class="grid grid-sidebar" style="margin-top: 20px">
+            <div class="card chart-card">
+              <div class="card-header">
+                <h2>Weight progress</h2>
+                <span class="section-note">Static SVG starter</span>
+              </div>
+              <div class="card-body">
+                <div
+                  class="chart-shell"
+                  id="weight-chart"
+                  aria-label="Weight progress chart"
+                >
+                  <div class="chart-grid"></div>
+                  <div class="chart-y-labels">
+                    <span>171</span><span>170</span><span>169</span
+                    ><span>168</span><span>167</span>
+                  </div>
+                  <svg
+                    id="weight-chart-svg"
+                    class="chart-svg"
+                    viewBox="0 0 700 240"
+                    preserveAspectRatio="none"
+                    role="img"
+                    aria-labelledby="weight-chart-title"
+                  >
+                    <title id="weight-chart-title">
+                      Static example weight trend
+                    </title>
+                    <polyline
+                      id="weight-line"
+                      points="0,45 60,45 120,135 180,135 240,135 300,135 360,112 420,112 480,166 540,166 600,166 660,166"
+                    ></polyline>
+                    <g id="weight-points">
+                      <circle cx="0" cy="45" r="4"></circle>
+                      <circle cx="60" cy="45" r="4"></circle>
+                      <circle cx="120" cy="135" r="4"></circle>
+                      <circle cx="360" cy="112" r="4"></circle>
+                      <circle cx="480" cy="166" r="4"></circle>
+                      <circle cx="660" cy="166" r="4"></circle>
+                    </g>
+                  </svg>
+                  <div class="chart-x-labels">
+                    <span>8/26</span><span>8/29</span><span>9/1</span
+                    ><span>9/4</span><span>9/7</span>
+                  </div>
+                </div>
+                <div class="callout">
+                  <strong>Challenge:</strong> Convert each weight into x/y
+                  coordinates, update
+                  <span class="code-hook">#weight-line</span>, and generate
+                  circles for every data point.
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header"><h2>Macro target reference</h2></div>
+              <div class="card-body">
+                <div class="mini-kpis">
+                  <div class="mini-kpi">
+                    <span>Calories</span><strong>1900</strong>
+                  </div>
+                  <div class="mini-kpi">
+                    <span>Fat</span><strong>60 g</strong>
+                  </div>
+                  <div class="mini-kpi">
+                    <span>Carbs</span><strong>180 g</strong>
+                  </div>
+                  <div class="mini-kpi">
+                    <span>Protein</span><strong>160 g</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="card" style="margin-top: 20px">
+            <div class="card-header">
+              <h2>Weigh-in history</h2>
+              <button
+                id="clear-weight-history"
+                type="button"
+                class="btn btn-danger"
+              >
+                Clear history
+              </button>
+            </div>
+            <div class="table-wrap">
+              <table class="data-table" id="weight-table">
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Day</th>
+                    <th class="number">Weight</th>
+                    <th class="number">Calorie Target</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="weight-table-body">
+                  <tr>
+                    <td>08/26/2026</td>
+                    <td>Wednesday</td>
+                    <td class="number">169.9</td>
+                    <td class="number">2000</td>
+                    <td>
+                      <button class="icon-btn" type="button">Delete</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>08/27/2026</td>
+                    <td>Thursday</td>
+                    <td class="number">169.9</td>
+                    <td class="number">2000</td>
+                    <td>
+                      <button class="icon-btn" type="button">Delete</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>08/28/2026</td>
+                    <td>Friday</td>
+                    <td class="number">168.4</td>
+                    <td class="number">2000</td>
+                    <td>
+                      <button class="icon-btn" type="button">Delete</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>09/01/2026</td>
+                    <td>Tuesday</td>
+                    <td class="number">168.8</td>
+                    <td class="number">2000</td>
+                    <td>
+                      <button class="icon-btn" type="button">Delete</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>09/03/2026</td>
+                    <td>Thursday</td>
+                    <td class="number">167.9</td>
+                    <td class="number">2000</td>
+                    <td>
+                      <button class="icon-btn" type="button">Delete</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>09/06/2026</td>
+                    <td>Sunday</td>
+                    <td class="number">167.9</td>
+                    <td class="number">2000</td>
+                    <td>
+                      <button class="icon-btn" type="button">Delete</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
