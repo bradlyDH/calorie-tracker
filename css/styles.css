@@ -280,6 +280,20 @@ h3 {
   font-size: 0.86rem;
 }
 
+.upload-section-note {
+  border: 1px solid var(--muted);
+  border-radius: 5px;
+  padding: 3px;
+  color: var(--muted);
+  font-size: 0.86rem;
+}
+
+.upload-section-note:hover {
+  background: var(--navy);
+  color: #fff;
+  transform: translateX(2px);
+}
+
 .form-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -340,6 +354,133 @@ input[readonly] {
 }
 .input-cool {
   background: var(--mint);
+}
+
+.foods-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  min-width: 220px;
+}
+
+.upload-group {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.upload-group label {
+  white-space: nowrap;
+  font-weight: 600;
+}
+
+.upload-group input[type="file"] {
+  max-width: 250px;
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+
+  background: rgba(0, 0, 0, 0.5);
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transition:
+    opacity 0.2s ease,
+    visibility 0.2s ease;
+
+  z-index: 1000;
+}
+
+.modal:target {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.modal-content {
+  position: relative;
+
+  width: min(1100px, 95vw);
+  max-height: 90vh;
+  overflow-y: auto;
+
+  padding: 28px;
+
+  background: white;
+  border-radius: 12px;
+
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+}
+
+.modal-content h3 {
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+.modal-content p {
+  line-height: 1.5;
+}
+
+.modal-close {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+
+  color: #555;
+  font-size: 28px;
+  font-weight: bold;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.modal-close:hover {
+  color: #000;
+}
+
+.csv-example {
+  margin: 20px 0;
+  padding: 16px;
+
+  overflow-x: auto;
+
+  background: #f5f5f5;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.csv-example code {
+  white-space: nowrap;
+}
+
+.csv-layout-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 16px 0;
+  border-radius: 8px;
+}
+
+.modal-note {
+  margin-bottom: 0;
+  font-size: 0.9rem;
+}
+
+.search-group {
+  margin-left: auto;
+}
+
+#food-search {
+  min-width: 300px;
 }
 
 .button-row {

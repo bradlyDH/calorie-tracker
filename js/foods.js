@@ -11,6 +11,7 @@ const foodCarbsInput = document.querySelector("#food-carbs");
 const foodProteinInput = document.querySelector("#food-protein");
 const foodNotesInput = document.querySelector("#food-notes");
 const foodBrandInput = document.querySelector("#food-brand");
+const uploadFoodListInput = document.querySelector("#upload-foods-input");
 
 // New food save and clear buttons
 const saveFoodBtn = document.querySelector("#save-food");
@@ -304,8 +305,71 @@ function alphabetizeFoods(foodListArray) {
   return arr;
 }
 
+function handleFoodListFileUpload(event) {
+  const file = event.target.files[0];
+  // console.log(file);
+
+  if (!file) {
+    window.alert("No file selected. Please choose a file.");
+    return;
+  }
+
+  const reader = new FileReader();
+  reader.onload = () => {
+    const fileContents = reader.result;
+
+    const fileRow = fileContents.split("\n");
+
+    const headerRow = fileRow[0].toLowerCase().trim();
+
+    console.log(headerRow);
+
+    const headerRowArray = headerRow.split(",");
+
+    console.log(headerRowArray);
+
+    const trimmedWhiteSpaceHeaders = headerRowArray.map((item) => item.trim());
+
+    console.log(trimmedWhiteSpaceHeaders);
+
+    const calorieHeaderIndex = trimmedWhiteSpaceHeaders.indexOf("calories"); // index 3
+    const foodNameHeaderIndex = trimmedWhiteSpaceHeaders.indexOf("food name"); // index 0
+
+    if (calorieHeaderIndex === -1 || foodNameHeaderIndex === -1) {
+      // window.alert("File is missing Calories or Food Name column.");
+
+      return;
+    }
+    for (let i = 1; i < fileRow.length; i++) {
+      // console.log(fileRow[i]);
+
+      const rowItem = fileRow[i].trim().split(",");
+
+      console.log(rowItem, "ROW ITEM");
+      console.log(rowItem.length);
+      newFoodFromFile = {
+        id: incrementId(),
+        name: rowItem[0].trim(),
+        brand: rowItem[1].trim(),
+        servingSize: Number(rowItem[2].trim()),
+        calories: Number(rowItem[3].trim()),
+        fat: Number(rowItem[4].trim()),
+        carbs: Number(rowItem[5].trim()),
+        protein: Number(rowItem[6].trim()),
+        notes: rowItem[7].trim(),
+      };
+      foods.push(newFoodFromFile);
+    }
+
+    console.log(foods);
+  };
+
+  reader.readAsText(file);
+}
+
 saveFoodBtn.addEventListener("click", addToFoodsList);
 clearFoodFormBtn.addEventListener("click", clearFoodFormInputs);
 ouncesInput.addEventListener("input", updateGrams);
 foodSearchInput.addEventListener("input", searchFoodList);
 tableHeader.forEach((header) => header.addEventListener("click", sortFoodList));
+uploadFoodListInput.addEventListener("change", handleFoodListFileUpload);

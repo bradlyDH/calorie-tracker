@@ -49,8 +49,22 @@
           <section class="card">
             <div class="card-header">
               <h2>Add a food</h2>
-              <span class="section-note"
-                >Form hooks are ready for JavaScript</span
+              <div class="upload-group">
+                <label for="upload-foods-input"
+                  >Upload your own foods .csv</label
+                >
+
+                <input
+                  type="file"
+                  id="upload-foods-input"
+                  name="upload-foods-input"
+                  accept=".csv"
+                />
+              </div>
+              <span class="upload-section-note"
+                ><a href="#csv-layout-modal"
+                  >Here is a sample upload layout</a
+                ></span
               >
             </div>
             <div class="card-body">
@@ -150,13 +164,16 @@
             <div class="card">
               <div class="card-header">
                 <h2>Your foods</h2>
-                <div style="min-width: 220px">
-                  <input
-                    id="food-search"
-                    type="search"
-                    placeholder="Search foods…"
-                    aria-label="Search foods"
-                  />
+
+                <div class="foods-toolbar">
+                  <div class="search-group">
+                    <input
+                      id="food-search"
+                      type="search"
+                      placeholder="Search foods…"
+                      aria-label="Search foods"
+                    />
+                  </div>
                 </div>
               </div>
               <div class="table-wrap">
@@ -207,6 +224,27 @@
           </section>
         </div>
       </main>
+    </div>
+    <div id="csv-layout-modal" class="modal">
+      <div class="modal-content">
+        <a href="#" class="modal-close">&times;</a>
+
+        <h3>CSV Upload Layout</h3>
+
+        <p>Use these columns in this order:</p>
+
+        <img
+          class="csv-layout-image"
+          src="../assets/csv-layout-example.png"
+          alt="Example CSV upload layout"
+        />
+        <div class="csv-example">
+          Food Name, Food Brand, Serving Size (g), Calories, Fat (g), Carbs (g),
+          Protein (g), Notes
+        </div>
+
+        <p>Brand and Notes may be blank, but keep the columns in the file.</p>
+      </div>
     </div>
     <script src="/js/foods.js" defer></script>
   </body>
