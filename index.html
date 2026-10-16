@@ -45,8 +45,8 @@
               <p class="eyebrow">Daily dashboard</p>
               <h1>Track your day</h1>
               <p>
-                Choose a date, set your goal source, log food, and eventually
-                let your JavaScript calculate the rest.
+                Choose your goal source, log food, and eventually let your
+                JavaScript calculate the rest.
               </p>
             </div>
             <span class="status-pill"
@@ -62,7 +62,7 @@
               </div>
               <div class="card-body">
                 <div class="form-grid">
-                  <div class="field">
+                  <!-- <div class="field">
                     <label for="selected-date">Selected date</label
                     ><input
                       id="selected-date"
@@ -70,7 +70,7 @@
                       type="date"
                       value="2026-09-06"
                     />
-                  </div>
+                  </div> -->
                   <div class="field">
                     <label for="goal-source">Goal source</label
                     ><select id="goal-source" class="input-warm">
@@ -82,7 +82,7 @@
               </div>
             </div>
 
-            <div class="card">
+            <div class="card" id="manual-goal-overrides">
               <div class="card-header"><h2>Manual goal overrides</h2></div>
               <div class="card-body">
                 <div class="form-grid cols-4">
@@ -158,24 +158,24 @@
                   </tr>
                   <tr data-summary-row="consumed">
                     <th>Consumed</th>
-                    <td id="consumed-calories">1318</td>
+                    <td id="consumed-calories">0</td>
                     <td id="consumed-fat">33.3</td>
                     <td id="consumed-carbs">88.7</td>
                     <td id="consumed-protein">175.5</td>
                   </tr>
                   <tr class="remaining" data-summary-row="remaining">
                     <th>Remaining</th>
-                    <td id="remaining-calories">682</td>
+                    <td id="remaining-calories">0</td>
                     <td id="remaining-fat">55.6</td>
                     <td id="remaining-carbs">11.3</td>
                     <td id="remaining-protein">24.5</td>
                   </tr>
                   <tr data-summary-row="percent">
                     <th>% of Goal Used</th>
-                    <td>65.9%</td>
-                    <td>37.5%</td>
-                    <td>88.7%</td>
-                    <td>87.8%</td>
+                    <td id="percent-consumed-calories">65.9%</td>
+                    <td id="percent-consumed-fat">37.5%</td>
+                    <td id="percent-consumed-carbs">88.7%</td>
+                    <td id="percent-consumed-protein">87.8%</td>
                   </tr>
                 </tbody>
               </table>

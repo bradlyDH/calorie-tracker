@@ -322,21 +322,23 @@ function handleFoodListFileUpload(event) {
 
     const headerRow = fileRow[0].toLowerCase().trim();
 
-    console.log(headerRow);
+    // console.log(headerRow);
 
     const headerRowArray = headerRow.split(",");
 
-    console.log(headerRowArray);
+    // console.log(headerRowArray);
 
     const trimmedWhiteSpaceHeaders = headerRowArray.map((item) => item.trim());
 
-    console.log(trimmedWhiteSpaceHeaders);
+    // console.log(trimmedWhiteSpaceHeaders);
 
     const calorieHeaderIndex = trimmedWhiteSpaceHeaders.indexOf("calories"); // index 3
     const foodNameHeaderIndex = trimmedWhiteSpaceHeaders.indexOf("food name"); // index 0
 
     if (calorieHeaderIndex === -1 || foodNameHeaderIndex === -1) {
-      // window.alert("File is missing Calories or Food Name column.");
+      window.alert(
+        "File is missing Calories or Food Name column. Please see sample upload layout for expected file configuration.",
+      );
 
       return;
     }
@@ -345,8 +347,8 @@ function handleFoodListFileUpload(event) {
 
       const rowItem = fileRow[i].trim().split(",");
 
-      console.log(rowItem, "ROW ITEM");
-      console.log(rowItem.length);
+      // console.log(rowItem, "ROW ITEM");
+      // console.log(rowItem.length);
       newFoodFromFile = {
         id: incrementId(),
         name: rowItem[0].trim(),
@@ -361,7 +363,9 @@ function handleFoodListFileUpload(event) {
       foods.push(newFoodFromFile);
     }
 
-    console.log(foods);
+    // console.log(foods);
+    saveFoodList();
+    renderFoodList(alphabetizeFoods(foods));
   };
 
   reader.readAsText(file);

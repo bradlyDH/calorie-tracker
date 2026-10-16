@@ -1,15 +1,66 @@
 const foodSearchInput = document.querySelector("#food-search");
 const foodSuggestions = document.querySelector("#food-suggestions");
 const amountEatenInput = document.querySelector("#amount-eaten");
+
+// Food Log form
 const addFoodEntryBtn = document.querySelector("#add-food-entry");
 const foodLogTableBody = document.querySelector("#food-log-body");
+const foodLogTable = document.querySelector("#food-log-table");
 const clearFoodLogInputs = document.querySelector("#clear-food-log");
+
+// Daily Settings
+const goalSource = document.querySelector("#goal-source");
+const manualGoalOverrides = document.querySelector("#manual-goal-overrides");
+const manualGoalOverridesInput = manualGoalOverrides.querySelectorAll("input");
+
+// Daily Summary Table
+const dailySummaryTable = document.querySelector("#daily-summary-table");
+const goalCalories = dailySummaryTable.querySelector("#goal-calories");
+const goalFat = dailySummaryTable.querySelector("#goal-fat");
+const goalCarbs = dailySummaryTable.querySelector("#goal-carbs");
+const goalProtein = dailySummaryTable.querySelector("#goal-protein");
+
+// Consumed Calories and Macro's
+const consumedCalories = dailySummaryTable.querySelector("#consumed-calories");
+const consumedFat = dailySummaryTable.querySelector("#consumed-fat");
+const consumedCarbs = dailySummaryTable.querySelector("#consumed-carbs");
+const consumedProtein = dailySummaryTable.querySelector("#consumed-protein");
+
+// Remaining Calories and Macro's
+const remainingCalories = dailySummaryTable.querySelector(
+  "#remaining-calories",
+);
+const remainingFat = dailySummaryTable.querySelector("#remaining-fat");
+const remainingCarbs = dailySummaryTable.querySelector("#remaining-carbs");
+const remainingProtein = dailySummaryTable.querySelector("#remaining-protein");
+
+// Percent Consumed Calories and Macro's
+const percentConsumedCalories = dailySummaryTable.querySelector(
+  "#percent-consumed-calories",
+);
+const percentConsumedFat = dailySummaryTable.querySelector(
+  "#percent-consumed-fat",
+);
+const percentConsumedCarbs = dailySummaryTable.querySelector(
+  "#percent-consumed-carbs",
+);
+const percentConsumedProtein = dailySummaryTable.querySelector(
+  "#percent-consumed-protein",
+);
+
+// Manual override inputs
+const manualCalorieInput = document.querySelector("#manual-calories");
+const manualFatInput = document.querySelector("#manual-fat");
+const manualCarbInput = document.querySelector("#manual-carbs");
+const manualProteinInput = document.querySelector("#manual-protein");
 
 let foods = [];
 let foodLog = [];
 let selectedFoodId = null;
 
 loadFoodList();
+updateConsumedCaloriesCount();
+updateRemainingCaloriesCount();
 
 const incrementLogId = incrementFoodLogId();
 
@@ -84,7 +135,7 @@ function addFoodEntry() {
   const amountEaten = Number(amountEatenInput.value);
   const currentDateTime = new Date();
 
-  if (selectedFoodId === null && amountEaten <= 0)
+  if (selectedFoodId === false || amountEaten <= 0)
     return window.alert(
       "Please select a food and enter an amount eaten greater than 0.",
     );
@@ -109,8 +160,10 @@ function addFoodEntry() {
   };
 
   foodLog.push(newFoodEntry);
+
   // saveFoodList();
   renderFoodLog(foodLog);
+  updateConsumedCaloriesCount();
   // clearFoodFormInputs();
   console.log(foodLog);
 }
@@ -215,6 +268,65 @@ function clearFoodLogFormInputs() {
   // saveFoodBtn.textContent = "Save food";
 }
 
+function setGoalSource() {
+  if (goalSource.value.toLowerCase() !== "calculator") {
+    manualGoalOverrides.style.display = "block";
+  } else {
+    manualGoalOverrides.style.display = "none";
+  }
+}
+
+function updateDailySummary() {
+  goalCalories.textContent = Number(manualCalorieInput.value);
+  goalFat.textContent = Number(manualFatInput.value);
+  goalCarbs.textContent = Number(manualCarbInput.value);
+  goalProtein.textContent = Number(manualProteinInput.value);
+}
+
+function updateConsumedCaloriesCount() {
+  const initialValue = {
+    calories: 0,
+    fat: 0,
+    carbs: 0,
+    protein: 0,
+  };
+  const caloriesSum = foodLog.reduce((accumulator, currentValue) => {
+    accumulator.calories += currentValue.calories;
+    accumulator.fat += currentValue.fat;
+    accumulator.carbs += currentValue.carbs;
+    accumulator.protein += currentValue.protein;
+    return accumulator;
+  }, initialValue);
+
+  consumedCalories.textContent = Math.round(caloriesSum.calories);
+  consumedFat.textContent = Math.round(caloriesSum.fat);
+  consumedCarbs.textContent = Math.round(caloriesSum.carbs);
+  consumedProtein.textContent = Math.round(caloriesSum.protein);
+  clearFoodLogFormInputs();
+  updateRemainingCaloriesCount();
+}
+
+function updateRemainingCaloriesCount() {
+  remainingCalories.textContent = Math.round(
+    goalCalories.textContent - consumedCalories.textContent,
+  );
+
+  remainingFat.textContent = Math.round(
+    goalFat.textContent - consumedFat.textContent,
+  );
+
+  remainingCarbs.textContent = Math.round(
+    goalCarbs.textContent - consumedCarbs.textContent,
+  );
+
+  remainingProtein.textContent = Math.round(
+    goalProtein.textContent - consumedProtein.textContent,
+  );
+}
+
 clearFoodLogInputs.addEventListener("click", clearFoodLogFormInputs);
 foodSearchInput.addEventListener("input", searchFoodList);
 addFoodEntryBtn.addEventListener("click", addFoodEntry);
+goalSource.addEventListener("change", setGoalSource);
+manualGoalOverrides.addEventListener("input", updateDailySummary);
+foodLogTableBody.addEventListener("change", updateConsumedCaloriesCount);
