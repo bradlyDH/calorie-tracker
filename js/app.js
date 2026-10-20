@@ -48,6 +48,16 @@ const percentConsumedProtein = dailySummaryTable.querySelector(
   "#percent-consumed-protein",
 );
 
+// Progress Bar Stack
+const calorieProgressBar = document.querySelector("#calorie-progress");
+const calorieProgressLabel = document.querySelector("#calorie-progress-label");
+const proteinProgressBar = document.querySelector("#protein-progress");
+const proteinProgressLabel = document.querySelector("#protein-progress-label");
+const carbProgressBar = document.querySelector("#carb-progress");
+const carbProgressLabel = document.querySelector("#carb-progress-label");
+const fatProgressBar = document.querySelector("#fat-progress");
+const fatProgressLabel = document.querySelector("#fat-progress-label");
+
 // Manual override inputs
 const manualCalorieInput = document.querySelector("#manual-calories");
 const manualFatInput = document.querySelector("#manual-fat");
@@ -59,7 +69,8 @@ let foodLog = [];
 let selectedFoodId = null;
 
 loadFoodList();
-updateConsumedCaloriesCount();
+
+updateDailySummary();
 updateRemainingCaloriesCount();
 
 const incrementLogId = incrementFoodLogId();
@@ -164,6 +175,8 @@ function addFoodEntry() {
   // saveFoodList();
   renderFoodLog(foodLog);
   updateConsumedCaloriesCount();
+  updateDailySummary();
+  updateGoalUsedPercentage();
   // clearFoodFormInputs();
   console.log(foodLog);
 }
@@ -321,6 +334,55 @@ function updateRemainingCaloriesCount() {
 
   remainingProtein.textContent = Math.round(
     goalProtein.textContent - consumedProtein.textContent,
+  );
+}
+
+function updateGoalUsedPercentage() {
+  // Update consumed percentage
+  percentConsumedCalories.textContent = `${(
+    Number(consumedCalories.textContent / goalCalories.textContent) * 100
+  ).toFixed(1)}%`;
+
+  // Update the progress label
+  calorieProgressLabel.textContent = `${consumedCalories.textContent} / ${goalCalories.textContent}`;
+
+  // Update the progress bar
+  calorieProgressBar.setAttribute(
+    "style",
+    `--progress: ${percentConsumedCalories.textContent}`,
+  );
+
+  percentConsumedFat.textContent = `${(
+    Number(consumedFat.textContent / goalFat.textContent) * 100
+  ).toFixed(1)}%`;
+
+  fatProgressLabel.textContent = `${consumedFat.textContent} / ${goalFat.textContent}`;
+
+  fatProgressBar.setAttribute(
+    "style",
+    `--progress: ${percentConsumedFat.textContent}`,
+  );
+
+  percentConsumedCarbs.textContent = `${(
+    Number(consumedCarbs.textContent / goalCarbs.textContent) * 100
+  ).toFixed(1)}%`;
+
+  carbProgressLabel.textContent = `${consumedCarbs.textContent} / ${goalCarbs.textContent}`;
+
+  carbProgressBar.setAttribute(
+    "style",
+    `--progress: ${percentConsumedCarbs.textContent}`,
+  );
+
+  percentConsumedProtein.textContent = `${(
+    Number(consumedProtein.textContent / goalProtein.textContent) * 100
+  ).toFixed(1)}%`;
+
+  proteinProgressLabel.textContent = `${consumedProtein.textContent} / ${goalProtein.textContent}`;
+
+  proteinProgressBar.setAttribute(
+    "style",
+    `--progress: ${percentConsumedProtein.textContent}`,
   );
 }
 
